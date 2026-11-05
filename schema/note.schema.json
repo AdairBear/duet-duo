@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "duet-duo/note",
+  "title": "Handoff note front matter (inbox-*/<date>-<ID>.md)",
+  "type": "object",
+  "required": ["from", "to", "task", "status", "verified", "unverified", "next_step"],
+  "additionalProperties": false,
+  "properties": {
+    "from": {"type": "string", "enum": ["Dispatch", "Duet", "Owner", "Automation"]},
+    "to": {"type": "string", "enum": ["Dispatch", "Duet"]},
+    "task": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9-]{1,47}$"},
+    "status": {"type": "string", "enum": ["open", "claimed", "in-progress", "blocked", "needs-owner", "review", "done"]},
+    "verified": {"type": "string", "minLength": 1, "description": "what was checked, and how"},
+    "unverified": {"type": "string", "minLength": 1, "description": "what was not checked; '-' if nothing"},
+    "next_step": {"type": "string", "minLength": 1}
+  }
+}
